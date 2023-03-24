@@ -5,13 +5,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
-export default function ProductItem({title,image,price,category}) {
+import { Link } from 'react-router-dom';
+import CartDetailPage from '../../Page/CartDetail';
+export default function ProductItem({title,image,price,category,id}) {
     return (
         <Card sx={{ width:'300px' ,border:'1px solid grey',margin:'10px'}}>
             <CardMedia
                 sx={{ height: 200 ,width:200,margin:'20px auto'}}
-                
                 image={image}
                 title="green iguana"
             />
@@ -24,7 +24,7 @@ export default function ProductItem({title,image,price,category}) {
                 </Typography>
             </CardContent>
             <CardActions  style={{ display:'flex',justifyContent:'center' }}>
-                <Button size="medium" variant='contained' style={{backgroundColor:'#4d0101'}} >Buy Now</Button>
+            <Link to={`/produc/${id} `} style={{textDecoration:'none'}}>   <Button size="medium" variant='contained' style={{backgroundColor:'#4d0101'}}  >Buy Now</Button></Link>
             </CardActions>
         </Card>)
 }

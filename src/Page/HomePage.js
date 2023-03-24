@@ -1,12 +1,10 @@
 import React from 'react'
 import Main from '../Component/Main/Main'
-import Navbar from '../Component/Navbar/Navbar'
 import Product from '../Component/Product/Product'
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-    <Navbar/>
     <Main/>
     <Product/>
     </>

@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LoginIcon from '@mui/icons-material/Login';
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -79,9 +80,9 @@ export default function Navbar() {
               }}
 
             >
-              <MenuItem onClick={handleCloseNavMenu} > <Button  ><Typography variant='caption'>Home</Typography></Button> </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}  ><Button ><Typography variant='caption'>Product</Typography></Button> </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}> <Button ><Typography variant='caption'>About</Typography></Button></MenuItem>
+              <Link to="/"><MenuItem onClick={handleCloseNavMenu} > <Button  ><Typography variant='caption'>Home</Typography></Button> </MenuItem></Link>
+              <Link to="/product"> <MenuItem onClick={handleCloseNavMenu}  ><Button ><Typography variant='caption'>Product</Typography></Button> </MenuItem></Link>
+              <Link to="/cartdetail">  <MenuItem onClick={handleCloseNavMenu}> <Button ><Typography variant='caption'>About</Typography></Button></MenuItem></Link>
               <MenuItem onClick={handleCloseNavMenu} ><Button><Typography variant='caption'>Contact</Typography></Button></MenuItem>
             </Menu>
           </Box>
@@ -96,7 +97,7 @@ export default function Navbar() {
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
               fontFamily: 'monospace',
-              fontSize:'12px',
+              fontSize: '12px',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
@@ -106,23 +107,14 @@ export default function Navbar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {/* {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))} */}
-            <Button sx={{ mr: 2, color: 'white', display: 'block' }} ><Typography variant='caption'>Home</Typography></Button>
-            <Button sx={{ mr: 2, color: 'white', display: 'block' }} ><Typography variant='caption'>Product</Typography></Button>
+
+            <Link to="/" style={{textDecoration:'none'}}> <Button sx={{ mr: 2, color: 'white', display: 'block' }} ><Typography variant='caption'>Home</Typography></Button></Link>
+            <Link to="/produc" style={{textDecoration:'none'}}> <Button sx={{ mr: 2, color: 'white', display: 'block' }} ><Typography variant='caption'>Product</Typography></Button></Link>
             <Button sx={{ mr: 2, color: 'white', display: 'block' }} ><Typography variant='caption'>About</Typography></Button>
             <Button sx={{ mr: 2, color: 'white', display: 'block' }} ><Typography variant='caption'>Contact</Typography></Button>
           </Box>
-
           <Button style={{ backgroundColor: '#4d0101', }} variant='contained'><LoginIcon style={{ fontSize: '20px', paddingRight: '3px' }} />Login</Button>
-          <Button style={{ backgroundColor: '#4d0101', marginLeft: '5px' }} variant='contained'><ShoppingCartIcon style={{ fontSize: '20px', paddingRight: '3px' }} />Cart(0)</Button>
+          <Link to={"/cart"} style={{textDecoration:'none'}}><Button style={{ backgroundColor: '#4d0101', marginLeft: '5px' }} variant='contained'><ShoppingCartIcon style={{ fontSize: '20px', paddingRight: '3px' }} />Cart(0)</Button></Link>
 
         </Toolbar>
       </Container>

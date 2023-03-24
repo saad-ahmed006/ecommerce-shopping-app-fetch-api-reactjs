@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ProductItem from './ProductItem'
 import axios from 'axios'
-import { Grid, Typography, } from '@mui/material'
+import { Typography, } from '@mui/material'
 import { Box } from '@mui/system';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
@@ -21,6 +21,8 @@ export default function Product() {
 
   }
 
+
+
   useEffect(() => {
     GetProduct('https://fakestoreapi.com/products')
   }, [])
@@ -31,7 +33,7 @@ export default function Product() {
     setData(data)
   }
 
-  
+
   return (
     <>
       <Typography variant='h3' fontWeight={'bold'} style={{ textAlign: 'center', marginTop: '20px', marginBottom: '20px' }}>Lasted products</Typography>
@@ -44,15 +46,17 @@ export default function Product() {
         <Button size="medium" style={{ border: '1px solid #4d0101', color: 'black', margin: '10px' }} onClick={() => FilterCategory("electronics")} >ELECTRONICS</Button>
         <Button size="medium" style={{ border: '1px solid #4d0101', color: 'black', margin: '10px' }} onClick={() => FilterCategory("women's clothing")} >WOMEN'S CLOTHING</Button>
       </Box>
-      {loading?<Loading/>:
-      <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center", flexWrap: "wrap" }}>
-        {
-          filterItem.map((Item) => {
-            return <ProductItem image={Item.image} title={Item.title} price={Item.price} category={Item.category} key={Item.id} />
-          })
-        }
-      </Box>
-}
+      {loading ? <Loading /> :
+        <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center", flexWrap: "wrap" }}>
+          {
+            filterItem.map((Item) => {
+              return <ProductItem image={Item.image} title={Item.title} price={Item.price} category={Item.category} id={Item.id} key={Item.id} />
+            })
+          }
+        </Box>
+      }
     </>
   )
 }
+
+
