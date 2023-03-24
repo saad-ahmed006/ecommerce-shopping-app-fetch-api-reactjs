@@ -4,21 +4,23 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Box } from '@mui/system';
-import Image from '../Assets/pexels-photo-432059.webp'
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { Add } from '../redux/action/action';
 
 
 export default function CartDetailPage() {
   const { id } = useParams()
   const [product, setProduct] = useState([])
   const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
   const GetProduct = async (url) => {
     const response = await axios.get(url)
     const data = await response.data
-    // console.log(data);
+    console.log(data);
     // console.log(id);
     setProduct(data)
     setLoading(false)
@@ -29,6 +31,9 @@ export default function CartDetailPage() {
     GetProduct(`https://fakestoreapi.com/products/${id}`)
   }, [id])
 
+  const addpro = (Item) => {
+    dispatch(Add(Item))
+  }
 
   return (
 
@@ -39,9 +44,9 @@ export default function CartDetailPage() {
           component="img"
           alt="green iguana"
           image={product.image}
-          style={{  width: "15rem", margin: ' 10px auto', borderRadius: '5px' }}
+          style={{ width: "15rem", margin: ' 10px auto', borderRadius: '5px' }}
         />
-        <Typography variant='h5' marginTop={2} textAlign={'center'}><strong>{product.name}</strong></Typography>
+        <Typography variant='h5' marginTop={2} textAlign={'center'}><strong>{product.title}</strong></Typography>
         <CardContent>
           <Box sx={{ border: '1px solid #581845', display: 'flex', flexDirection: 'row', justifyContent: 'space-around', paddingTop: '20px', paddingBottom: '20px' }}>
             <Box sx={{ width: '40%' }}>
@@ -57,8 +62,8 @@ export default function CartDetailPage() {
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
 
-            <Button style={{ backgroundColor: '#4d0101', color: 'white', margin: '10px' }} >Add To Cart</Button>
-            <Link to={"/cart"} style={{textDecoration:'none'}}><Button style={{ backgroundColor: '#4d0101', color: 'white', margin: '10px' }}>Go to Cart</Button></Link>
+            <Button style={{ backgroundColor: '#4d0101', color: 'white', margin: '10px' }} onClick={() => addpro(product)}>Add To Cart</Button>
+            <Link to={"/cart"} style={{ textDecoration: 'none' }}><Button style={{ backgroundColor: '#4d0101', color: 'white', margin: '10px' }}>Go to Cart</Button></Link>
           </Box>
         </CardContent>
 

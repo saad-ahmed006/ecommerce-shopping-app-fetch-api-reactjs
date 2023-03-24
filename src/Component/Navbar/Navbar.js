@@ -13,9 +13,11 @@ import AdbIcon from '@mui/icons-material/Adb';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LoginIcon from '@mui/icons-material/Login';
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const state = useSelector((state) => state.CartReducer.carts)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -108,13 +110,13 @@ export default function Navbar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
-            <Link to="/" style={{textDecoration:'none'}}> <Button sx={{ mr: 2, color: 'white', display: 'block' }} ><Typography variant='caption'>Home</Typography></Button></Link>
-            <Link to="/produc" style={{textDecoration:'none'}}> <Button sx={{ mr: 2, color: 'white', display: 'block' }} ><Typography variant='caption'>Product</Typography></Button></Link>
+            <Link to="/" style={{ textDecoration: 'none' }}> <Button sx={{ mr: 2, color: 'white', display: 'block' }} ><Typography variant='caption'>Home</Typography></Button></Link>
+            <Link to="/produc" style={{ textDecoration: 'none' }}> <Button sx={{ mr: 2, color: 'white', display: 'block' }} ><Typography variant='caption'>Product</Typography></Button></Link>
             <Button sx={{ mr: 2, color: 'white', display: 'block' }} ><Typography variant='caption'>About</Typography></Button>
             <Button sx={{ mr: 2, color: 'white', display: 'block' }} ><Typography variant='caption'>Contact</Typography></Button>
           </Box>
           <Button style={{ backgroundColor: '#4d0101', }} variant='contained'><LoginIcon style={{ fontSize: '20px', paddingRight: '3px' }} />Login</Button>
-          <Link to={"/cart"} style={{textDecoration:'none'}}><Button style={{ backgroundColor: '#4d0101', marginLeft: '5px' }} variant='contained'><ShoppingCartIcon style={{ fontSize: '20px', paddingRight: '3px' }} />Cart(0)</Button></Link>
+          <Link to={"/cart"} style={{ textDecoration: 'none' }}><Button style={{ backgroundColor: '#4d0101', marginLeft: '5px' }} variant='contained'><ShoppingCartIcon style={{ fontSize: '20px', paddingRight: '3px' }} />Cart({state.length})</Button></Link>
 
         </Toolbar>
       </Container>

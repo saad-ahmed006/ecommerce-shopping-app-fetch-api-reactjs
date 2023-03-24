@@ -1,10 +1,8 @@
-// import { createStore } from 'redux'
-// import {createStore} from 'redux'
-// import { createStore } from 'redux'
-// import rootred from './redux/reducer/combin'
+import { createStore } from 'redux'
+import rootred from './redux/reducer/combin'
 
-// const store=createStore(
-//     rootred
-// )
+const store=createStore(
+    rootred
+)
 
-// export default store
+export default store
